@@ -55,7 +55,11 @@ ifeq ($(TARGET_TEGRA_DOLBY),true)
 LOCAL_SRC_FILES            := $(COMMON_AUDIO_PATH)/lib/hw/audio.primary.tegra.so
 else
 LOCAL_SRC_FILES            := $(COMMON_AUDIO_PATH)/lib/hw/audio.primary.tegra.nodolby.so
+ifeq ($(TARGET_TEGRA_AUDIO_VERSION),2.0)
 LOCAL_VINTF_FRAGMENTS      := android.hardware.audio@2.0-service.xml
+else
+LOCAL_VINTF_FRAGMENTS      := android.hardware.audio@4.0-service.xml
+endif
 endif
 LOCAL_MODULE_SUFFIX        := .so
 LOCAL_MODULE_CLASS         := SHARED_LIBRARIES

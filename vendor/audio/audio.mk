@@ -14,8 +14,6 @@
 
 PRODUCT_PACKAGES += \
     android.hardware.audio@2.0-service \
-    android.hardware.audio@4.0-impl \
-    android.hardware.audio.effect@4.0-impl \
     audio.a2dp.default \
     audio.usb.default \
     audio.r_submix.default \
@@ -23,6 +21,16 @@ PRODUCT_PACKAGES += \
     android.hardware.soundtrigger@2.1-impl \
     sound_trigger.primary.tegra \
     NvAudioSvc
+
+ifeq ($(TARGET_TEGRA_AUDIO_VERSION),2.0)
+PRODUCT_PACKAGES += \
+    android.hardware.audio@2.0-impl \
+    android.hardware.audio.effect@2.0-impl
+else
+PRODUCT_PACKAGES += \
+    android.hardware.audio@4.0-impl \
+    android.hardware.audio.effect@4.0-impl
+endif
 
 ifeq ($(TARGET_TEGRA_DOLBY),true)
 PRODUCT_PACKAGES += \
